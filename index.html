@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Auctioning Detroit</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,300,600' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:700,800,900' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/accounting.js"></script> 
+</head>
+<body>
+	<div id="header_container">
+		<nav>
+			<ul>
+				<li><a href="about.html">About This Map</a></li>
+				<li><a href="http://www.linkedin.com/in/matthewpetric/">LinkedIn</a></li>
+				<li><a href="http://www.github.com/mpetric/auctioning-detroit">Github</a></li>
+			</ul>
+		</nav>
+	    <div id="header">Auctioning Detroit</div>
+	</div>
+  	<div id="sideBar">
+		<div id="housePhotoArea">
+			<a id="full_url" href="http://auctions.buildingdetroit.org/Listing/Details/403430/1737-W-Chicago-Blvd">
+			<img id="housePhoto" src="Content/listingImages/20140523/21f10199-ae7c-4a2a-ae57-23abb1f3c109_thumbcrop.jpg" style="width:324px;height:250px">
+			</a>
+		</div>
+		<div id="attributeTable">
+		    <div class="row">
+		    	<a id="full_url_2" href="http://auctions.buildingdetroit.org/Listing/Details/403430/1737-W-Chicago-Blvd">
+		        <div class="fullCell"><span id="address">1737 W. Chicago Blvd</span></div>
+		        </a>
+		    </div>
+		    <div class="row">
+		        <div class="cell left">Price</div>
+		        <div class="cell right"><span id="price">$34,400</span></div>
+		    </div>
+		    <div class="row">
+		        <div class="cell left">Sale Date</div>
+		        <div class="cell right even"><span id="saleDate">May 29, 2014 </span></div>
+		    </div>
+		    <div class="row">
+		        <div class="cell left">Square Feet</div>
+		        <div class="cell right"><span id="squareFeet">3,800</span></div>
+		    </div>
+		    <div class="row">
+		        <div class="cell left">Bedrooms</div>
+		        <div class="cell right even"><span id="bedrooms">6</span></div>
+		    </div>
+		    <div class="row">
+		        <div class="cell left">Bathrooms</div>
+		        <div class="cell right"><span id="bathrooms">2.1</span></div>
+		    </div>
+		    <div class="row">
+		        <div class="cell left">Year Built</div>
+		        <div class="cell right even"><span id="yearBuilt">1994</span></div>
+		    </div>
+		    <div class="row">
+		        <div class="cell left">Neighorhood</div>
+		        <div class="cell right"><span id="neighborhood">Durfee</span></div>
+		    </div>
+		</div>
+	</div>
+
+	<div id="map"></div>
+
+	<div id="footer">
+ 		<a class="open" href="javascript:void(0)">
+			<span>Show Data Visualization</span>
+		</a>
+	 	<a class="close" href="javascript:void(0)">
+			<span>Hide Data Visualization</span>
+		</a>        
+		<div id="footerContent">
+			<div id="footerContainer"></div>
+		</div>
+	</div>
+
+
+	<script src="js/leaflet.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/l.control.geosearch.js"></script>
+	<script src="js/l.geosearch.provider.google.js"></script>
+	<link rel="stylesheet" href="css/l.geosearch.css" />
+	<script src="js/script.js"></script> 
+</body>
+</html>
