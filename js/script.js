@@ -11,7 +11,7 @@ map.addControl(L.control.zoom({
     position: 'topright'
 }))
 
-// Create two variable for basemap options
+// Create two variables for basemap options
 
 var standardColor = 'http://{s}.tiles.mapbox.com/v3/examples.map-i875mjb7/{z}/{x}/{y}.png';
 var darkGreyColor = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
@@ -38,6 +38,11 @@ L.Icon.Default.imagePath = 'images/';
 function getColor(x) {
     return x > 50000 ? "#005a32" : x > 25000 ? "#238b45" : x > 10000 ? "#41ab5d" : x > 5000 ? "#74c476" : x > 1000 ? "#a1d99b" :
         "#c7e9c0";
+}
+
+function getFontColor(z) {
+    return z > 10000.1 ? "white" :
+        "#191919";
 }
 
 function getRadius(r) {
@@ -104,6 +109,8 @@ function numberWithCommas(x) {
 }
 
 
+
+
 //Setup on click and mouseover actions
 
 function makeMarkers(feature, layer) {
@@ -111,6 +118,7 @@ function makeMarkers(feature, layer) {
     console.log(thisFeature);
     layer.on("click", function (e) {
         var priceFormat = accounting.formatMoney(thisFeature.price, "$", 0, ",", "."); //accesses accounting.js to format into currency
+        var priceFormatNGBH = accounting.formatMoney(thisFeature.sale_summaries_NGBR_AVG, "$", 0, ",", ".");
         var squareFeetFormat = numberWithCommas(thisFeature.squareFeet); //format square feet with thousands seperator
         //begin formatting for date
         var year = thisFeature.saleDate.substring(0, 4);
@@ -158,16 +166,31 @@ function makeMarkers(feature, layer) {
         //end formatting for date
         map.panTo(new L.LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]));
         $('#address').text(thisFeature.address)
+        var thisPropertyWidth = Math.log10(thisFeature.price)*Math.log10(thisFeature.price)*Math.log10(thisFeature.price)*4.8;
+        $('#thisProperty').text(thisFeature.address).css({"width" : thisPropertyWidth, "background-color" : getColor(thisFeature.price), "color" : getFontColor(thisFeature.price)})
         $('#bedrooms').text(thisFeature.bedrooms)
         $('#squareFeet').text(squareFeetFormat)
         $('#price').text(priceFormat)
+        $('#priceChart').text(priceFormat)
+        $('#priceChartNGBH').text(priceFormatNGBH)
         $('#bathrooms').text(thisFeature.bathrooms)
         $('#saleDate').text(formattedDate)
         $('#yearBuilt').text(thisFeature.YEARBUILT)
-        $('#neighborhood').text(thisFeature.MPSUBSEC01)
         $('#full_url').attr("href", thisFeature.full_url)
         $('#full_url_2').attr("href", thisFeature.full_url)
         $('#housePhoto').attr("src", "./" + thisFeature.image)
+        $('#neighborhoodAvg').text(thisFeature.sale_summaries_NGBR_AVG)
+        $('#neighborhood').text(thisFeature.MPSUBSEC01)
+        var neighborhoodWidth = Math.log10(thisFeature.sale_summaries_NGBR_AVG)*Math.log10(thisFeature.sale_summaries_NGBR_AVG)*Math.log10(thisFeature.sale_summaries_NGBR_AVG)*4.8;
+        $('#neighborhoodName').text(thisFeature.MPSUBSEC01).css({"width" : neighborhoodWidth, "background-color" : getColor(thisFeature.sale_summaries_NGBR_AVG), "color" : getFontColor(thisFeature.sale_summaries_NGBR_AVG)})
+        
+        //attempt to nest d3 as nested function
+        function bar()
+          {
+            "test"
+          }
+        //console.log(bar);
+
     });
     layer.on({
         mouseover: function over(e) {
@@ -193,9 +216,55 @@ $(document).ready(function () {
 
     $('.close').click(function () {
         $('#footer').animate({
-            bottom: "-233px"
+            bottom: "-273px"
         });
         $(this).hide();
         $('.open').show();
     });
 });
+
+
+//Script for D3 Horizontal Bar Charts
+        var w = 500,
+            h = 100;
+
+        var svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+    
+        d3.json("js/bars.json", function(json) {
+    
+            var data = json.items;
+    
+            var max_n = 0;
+            for (var d in data) {
+                max_n = Math.max(data[d].n, max_n);
+            }
+        
+            var dx = w / max_n;
+            var dy = h / data.length;
+    
+            // bars
+            var bars = svg.selectAll(".bar")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("class", function(d, i) {return "bar " + d.label;})
+                .attr("x", function(d, i) {return 0;})
+                .attr("y", function(d, i) {return dy*i;})
+                .attr("width", function(d, i) {return dx*d.n})
+                .attr("height", dy);
+    
+            // labels
+            var text = svg.selectAll("text")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("class", function(d, i) {return "label " + d.label;})
+                .attr("x", 5)
+                .attr("y", function(d, i) {return dy*i + 15;})
+                .text( function(d) {return d.label + " (" + d.n  + ")";})
+                .attr("font-size", "15px")
+                .style("font-weight", "bold");
+        });

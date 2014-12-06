@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Auctioning Detroit</title>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,300,600' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Raleway:700,800,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:600,700,800,900' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/accounting.js"></script> 
@@ -67,18 +67,49 @@
 
 	<div id="footer">
  		<a class="open" href="javascript:void(0)">
-			<span>Show Data Visualization</span>
+			<span>Compare to Neighorhood and Detroit</span>
 		</a>
 	 	<a class="close" href="javascript:void(0)">
 			<span>Hide Data Visualization</span>
 		</a>        
 		<div id="footerContent">
-			<div id="footerContainer"></div>
+			<div id="footerContainer">
+				<div id="footerTitle">Auction Closing Price Comparison</div>
+				<div id="chartTable">
+				    <div class="chartRow">
+				        <div class="chartCell left">Property
+				        	<div class="indent" id="priceChart">$34,400</div>
+				        </div>
+				        <div class="chartCell right" id="thisProperty">1737 W. Chicago Blvd.
+						</div>
+				    </div>
+				    <div class="chartRow">
+				        <div class="chartCell left">Neighborhood
+							<div class="indent" id="priceChartNGBH">$18,038</div>
+				        </div>
+				        <div class="chartCell right" id="neighborhoodName">Durfee</div>
+				    </div>
+				    <div class="chartRow">
+				        <div class="chartCell left">City
+							<div class="indent">$8,973</div>
+				        </div>
+				        <div class="chartCell right" id="cityName">Detroit
+				        </div>
+				    </div>
+				</div>
+				<div id="scale">
+					<div class="scale" id="first">$1,000</div>
+					<div class="scale" id="second">$10,000</div>
+					<div class="scale" id="third">$50,000</div>
+					<div class="scale" id="fourth">$100,000</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
 
 	<script src="js/leaflet.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="js/l.control.geosearch.js"></script>
 	<script src="js/l.geosearch.provider.google.js"></script>

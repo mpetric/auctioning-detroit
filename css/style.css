@@ -1,3 +1,6 @@
+
+
+
 body,html {
   font-family:'Open Sans', sans-serif;
   padding: 0;
@@ -238,7 +241,7 @@ li a:hover {
 /*Styles for Collapsible Footer*/
 #footer {
     position:fixed;
-    bottom:-233px;
+    bottom:-273px;
     right:420px;
 }
 .open {
@@ -292,13 +295,13 @@ li a:hover {
     padding-left:15px;
 }
 #footerContent {
-    background:rgba(70, 70, 70, 0.6);
+    background:rgba(40, 40, 40, 0.9);
     line-height:20px;
     font-size:13px;
     font-family: 'Open Sans', sans-serif;
     color:white;
-    padding:15px 15px 15px 15px;
-    width:555px;
+    padding:5px 5px 5px 5px;
+    width:730px;
     margin-top:27px;
     -moz-border-radius:2px 0 0 0;
     -webkit-box-shadow:0 -1px 5px rgba(0, 0, 0, 0.20);
@@ -309,8 +312,123 @@ li a:hover {
 }
 
 #footerContainer {
-	width:550px;
-	height:200px;
-	border:2px solid gray;
-	background-color:rgba(50,50,50,0.5);
+	width:715px;
+	height:250px;
+	border:1px solid gray;
+    padding: 5px 5px 5px 5px;
+	/*background-color:rgba(50,50,50,0.5);*/
 }
+
+#footerTitle {
+    font-family:'Raleway', sans-serif;
+    font-size:1.4em;
+    font-weight:600;
+    text-align: center;
+    margin-top:3px;
+    margin-bottom:5px;
+}
+
+
+#cityName {
+    width:296.484px;
+    background-color: #74c476;
+    height:55px;
+    line-height: 55px;
+    color:#191919;
+    padding: 0px 0px 0px 5px;
+    margin-top:5px;
+    float:left;
+}
+
+#neighborhoodName {
+    width:370.087px;
+    background-color: #41ab5d;
+    height:55px;
+    line-height: 55px;
+    color:white;
+    padding: 0px 0px 0px 5px;
+    margin-top:5px;
+    float:left;
+}
+
+#thisProperty {
+    width:448.147px;
+    background-color: #238b45;
+    height:55px;
+    line-height: 55px;
+    color:white;
+    padding: 0px 0px 0px 5px;
+    margin-top:5px;
+    float:left;
+}
+
+#chartTable {
+    width:710px;
+    box-sizing: border-box;
+    font-family:'Open Sans',sans-serif;
+}
+.chartRow {
+    width:100%;
+    overflow:hidden;
+}
+
+.chartCell {
+    float:left;
+    padding:3px;
+    margin-top:4px;
+    border-radius:3px;
+}
+
+.chartCell.left{
+    width:95px;
+    float:left;
+    font-weight: 600;
+}
+
+.chartCell.right {
+    width:200px;
+    background:rgba(42,85,65,.8);
+    margin-left: 4px;
+    text-align:left;
+    color:white;
+}
+
+.indent {
+    margin-left:7px;
+    font-size:.9em;
+    color:rgb(205,205,205);
+    font-weight:normal;
+}
+
+/*Scale bar for footer visualization*/
+.scale {
+    float:left;
+    height:20px;
+    background-color:rgba(125,125,125,.9);
+    color:white;
+    margin-top:10px;
+    padding:2.5px 2.5px 2.5px 2.5px;
+    text-align: right;
+    border-bottom-left-radius: 5px;
+}
+
+#first {
+    width:130px;
+    margin-left:105px;
+}
+
+#second {
+    width:167px;
+    margin-left:3px;
+}
+
+#third {
+    width:182px;
+    margin-left:3px;
+}
+
+#fourth {
+    width:100px;
+    margin-left:3px;
+}
+/*End Scale Bar*/
