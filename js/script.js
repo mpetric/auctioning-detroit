@@ -1,9 +1,22 @@
+//Hide footer on small screens
+
+if ($(window).width() < 1200) {
+    $('#footer').css("display", "none");
+}
+
+
+// Set location of points geoJson
+
+var geoJsonFile = './js/auction_points.geojson';
+
+
 // Set up map and turn off default zoom control
 
 var map = L.map('map', {
     zoomControl: false
 })
-    .setView([42.381427, -83.045754], 12);
+
+    .setView([42.371427, -83.045754], 12);
 
 // Add zoom control to top right of screen
 
@@ -11,9 +24,9 @@ map.addControl(L.control.zoom({
     position: 'topright'
 }))
 
-// Create two variables for basemap options
 
-var standardColor = 'http://{s}.tiles.mapbox.com/v3/examples.map-i875mjb7/{z}/{x}/{y}.png';
+// Create variable for basemap
+
 var darkGreyColor = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
 
 // Add basemap to map
@@ -21,6 +34,7 @@ var darkGreyColor = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
 L.tileLayer(darkGreyColor, {
     maxZoom: 18
 }).addTo(map);
+map.attributionControl.setPrefix('');
 
 // Add address search using geosearch plugin
 
@@ -32,8 +46,86 @@ new L.Control.GeoSearch({
 
 L.Icon.Default.imagePath = 'images/';
 
+// Load external geoJson and style markers for points according to style function
 
-// Return color and radius based on value
+$.getJSON(geoJsonFile, function (data) {
+    var geojsonLayer = L.geoJson(data.features, {
+        onEachFeature: makeMarkers,
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, style(feature) //style(feature) loads style from function above
+            );
+        }
+    }).addTo(map);
+});
+
+// Create Info Control for Neighborhood Layer
+var info = L.control({
+    position: 'bottomright'
+});
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+};
+
+info.update = function (props) {
+    this._div.innerHTML = '<h5>Neighborhood:</h5>' +  (props ?
+        '<b><div id="offset">' + props.NHOOD + '</b></div>' + '<h5>Auctions:</h5><b><div id="offset">' +  props.Count_ + ' homes</b></div>'
+        : '<div id="offset"><b>Hover over a neighborhood</b></div>');
+};
+
+info.addTo(map);
+
+// Load external geojson file for neighborhood polygons, style, and turn on mouseover and zoom effects
+
+var myStyle = {
+    "color": "rgb(125,125,125)",
+    "weight": 2,
+    "opacity": .25,
+    "fillColor": "rgb(25,25,25)",
+    "fillOpacity": 0
+};
+
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: 'rgb(150,150,150)',
+        opacity: .85,
+        fillColor: 'rgb(25,25,25)',
+        fillOpacity: 0
+    });
+    layer.bringToBack();
+    info.update(layer.feature.properties);
+}
+
+var geojson;
+
+function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+    info.update();
+}
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
+
+geojson = L.geoJson(neighborhoods, {
+            style: myStyle,
+            onEachFeature: onEachFeature
+        }).addTo(map);
+
+// Return color and radius of point marker based on auction close price
 
 function getColor(x) {
     return x > 50000 ? "#005a32" : x > 25000 ? "#238b45" : x > 10000 ? "#41ab5d" : x > 5000 ? "#74c476" : x > 1000 ? "#a1d99b" :
@@ -64,19 +156,6 @@ function style(feature) {
 }
 
 
-// Load external geoJson and style markers according to style function
-
-$.getJSON('./js/auction_points.geojson', function (data) {
-    var geojsonLayer = L.geoJson(data.features, {
-        onEachFeature: makeMarkers,
-        pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, style(feature) //style(feature) loads style from function above
-            );
-        }
-    }).addTo(map);
-});
-
-
 //Create legend based off of getColor function
 
 var legend = L.control({
@@ -84,9 +163,9 @@ var legend = L.control({
 });
 legend.onAdd = function (map) {
 
-    var div = L.DomUtil.create('div', 'info legend'),
+    var div = L.DomUtil.create('div', 'legend'),
         grades = [0, 1000, 5000, 10000, 25000, 50000],
-        labels = ['<strong> Sale Price </strong>'],
+        labels = ['<strong><span id="legendTitle"> Sale Price </span></strong>'],
         from, to;
 
     for (var i = 0; i < grades.length; i++) {
@@ -102,20 +181,19 @@ legend.onAdd = function (map) {
 legend.addTo(map);
 
 
-//Create function to format number with thousands seperator
+//Create function to format number with thousands seperator for square feet
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ",");
 }
 
 
-
-
 //Setup on click and mouseover actions
 
 function makeMarkers(feature, layer) {
     var thisFeature = feature.properties;
-    console.log(thisFeature);
+    //console.log(feature);
+
     layer.on("click", function (e) {
         var priceFormat = accounting.formatMoney(thisFeature.price, "$", 0, ",", "."); //accesses accounting.js to format into currency
         var priceFormatNGBH = accounting.formatMoney(thisFeature.sale_summaries_NGBR_AVG, "$", 0, ",", ".");
@@ -162,11 +240,10 @@ function makeMarkers(feature, layer) {
             var monthName = "December";
         }
         var formattedDate = monthName + " " + day + ", " + year;
-        //console.log(formattedDate);
         //end formatting for date
-        map.panTo(new L.LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]));
+        // map.panTo(new L.LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]));
         $('#address').text(thisFeature.address)
-        var thisPropertyWidth = Math.log10(thisFeature.price)*Math.log10(thisFeature.price)*Math.log10(thisFeature.price)*4.8;
+        var thisPropertyWidth = Math.log10(thisFeature.price)*Math.log10(thisFeature.price)*Math.log10(thisFeature.price)*4.6;
         $('#thisProperty').text(thisFeature.address).css({"width" : thisPropertyWidth, "background-color" : getColor(thisFeature.price), "color" : getFontColor(thisFeature.price)})
         $('#bedrooms').text(thisFeature.bedrooms)
         $('#squareFeet').text(squareFeetFormat)
@@ -181,16 +258,8 @@ function makeMarkers(feature, layer) {
         $('#housePhoto').attr("src", "./" + thisFeature.image)
         $('#neighborhoodAvg').text(thisFeature.sale_summaries_NGBR_AVG)
         $('#neighborhood').text(thisFeature.MPSUBSEC01)
-        var neighborhoodWidth = Math.log10(thisFeature.sale_summaries_NGBR_AVG)*Math.log10(thisFeature.sale_summaries_NGBR_AVG)*Math.log10(thisFeature.sale_summaries_NGBR_AVG)*4.8;
+        var neighborhoodWidth = Math.log10(thisFeature.sale_summaries_NGBR_AVG)*Math.log10(thisFeature.sale_summaries_NGBR_AVG)*Math.log10(thisFeature.sale_summaries_NGBR_AVG)*4.6;
         $('#neighborhoodName').text(thisFeature.MPSUBSEC01).css({"width" : neighborhoodWidth, "background-color" : getColor(thisFeature.sale_summaries_NGBR_AVG), "color" : getFontColor(thisFeature.sale_summaries_NGBR_AVG)})
-        
-        //attempt to nest d3 as nested function
-        function bar()
-          {
-            "test"
-          }
-        //console.log(bar);
-
     });
     layer.on({
         mouseover: function over(e) {
@@ -204,6 +273,7 @@ function makeMarkers(feature, layer) {
 }
 
 
+
 //Script for Footer
 $(document).ready(function () {
     $('.open').click(function () {
@@ -211,12 +281,12 @@ $(document).ready(function () {
             bottom: 0
         });
         $(this).hide();
-        $('.close').show();
+        $('.closeFooter').show();
     });
 
-    $('.close').click(function () {
+    $('.closeFooter').click(function () {
         $('#footer').animate({
-            bottom: "-273px"
+            bottom: "-270px"
         });
         $(this).hide();
         $('.open').show();
@@ -224,47 +294,20 @@ $(document).ready(function () {
 });
 
 
-//Script for D3 Horizontal Bar Charts
-        var w = 500,
-            h = 100;
+// Script for About Page
+$('#about').on('click',function(){
+    $('#mask').fadeIn(250);
+    $('.popup').fadeIn(250);
+    $('.popupBackground').fadeIn(250);
+});
 
-        var svg = d3.select("#chart")
-            .append("svg")
-            .attr("width", w)
-            .attr("height", h);
-    
-        d3.json("js/bars.json", function(json) {
-    
-            var data = json.items;
-    
-            var max_n = 0;
-            for (var d in data) {
-                max_n = Math.max(data[d].n, max_n);
-            }
-        
-            var dx = w / max_n;
-            var dy = h / data.length;
-    
-            // bars
-            var bars = svg.selectAll(".bar")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("class", function(d, i) {return "bar " + d.label;})
-                .attr("x", function(d, i) {return 0;})
-                .attr("y", function(d, i) {return dy*i;})
-                .attr("width", function(d, i) {return dx*d.n})
-                .attr("height", dy);
-    
-            // labels
-            var text = svg.selectAll("text")
-                .data(data)
-                .enter()
-                .append("text")
-                .attr("class", function(d, i) {return "label " + d.label;})
-                .attr("x", 5)
-                .attr("y", function(d, i) {return dy*i + 15;})
-                .text( function(d) {return d.label + " (" + d.n  + ")";})
-                .attr("font-size", "15px")
-                .style("font-weight", "bold");
-        });
+$('#close').on('click',function(){
+    $('.popup').fadeOut(250);
+    $('.popupBackground').fadeOut(250);
+    $('#mask').fadeOut(250);
+});
+
+//Turn off info window if small display; run function at end of script to override div info creation
+if ($(window).width() < 1000) {
+    $('.info').css("display", "none");
+}

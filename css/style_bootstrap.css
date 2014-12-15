@@ -1,69 +1,90 @@
-
-body,html {
+html, body {
   font-family:'Open Sans', sans-serif;
   padding: 0;
   margin:0;
   height:100%;
   width:100%;
-  font-size:16px;
-  overflow: hidden;
-
+  font-size:14px;
+  background-color:rgb(17,17,17);
 }
 
-
-#header_container { 
-	background-color:rgba(5, 5, 5, 0.9); 
-	height:60px;
-	left:0;
-	position:absolute;
-	width:100%;
-	top:0;
-	z-index:10;
+/*Changes to Bootstrap Defaults*/
+.navbar {
+	margin-bottom:0px;
 }
 
+.navbar-default {
+	background-color: rgba(17, 17, 17, 1);
+	border-color: rgba(17, 17, 17, 1);
+}
+.navbar-brand {
+	float: left;
+	height: 50px;
+	padding: 15px 0px;
+	font-size: 18px;
+	line-height: 20px;
+}
+
+.navbar-nav > li > a {
+	padding-top: 15px;
+	padding-bottom: 0px;
+}
+
+.col-sm-9 {
+	height: 100%;
+	padding: 0px;
+}
+
+.col-sm-3 {
+	background: rgba(17, 17, 17, 1);
+	color:white;
+	height:100%;
+	min-height:550px;
+}
+
+.row {
+	height:100%;
+}
+
+.container-fluid {
+	height:100%;
+}
+
+/*End Changes to Bootsrap CSS*/
 
 #header {
-    font-family:'Raleway',sans-serif;
-    height: 57px;
-    color:rgba(230,230,230,0.95);
-    padding-left:10px; 
-    text-align:left;
-	font-size:2em;
+	font-family: 'Raleway',sans-serif;
+	color: rgba(230,230,230,1);
+	text-align: left;
+	font-size: 2em;
 	font-weight: 700;
-    position:relative;
-    top:20px;
-    float:left;
+	position: absolute;
+	left:5px;
+	top: 10px;
+	float: left;
 }
 
-#headerText {
-    font-family:'Open Sans',sans-serif;
-    height: 60px;
-    width:700px;
-    color:rgba(200,200,200,0.95);
-    padding-left:10px; 
-    text-align:left;
-    font-size:.8em;
-    font-weight: 600;
-    float:left;
-    position:relative;
-    left:20px;
-    top:17.5px;
 
+#quickInfo {
+	font-family: 'Raleway',sans-serif;
+	color: rgba(230,230,230,1);
+	text-align: left;
+	font-size: 1.25em;
+	font-weight: 600;
+	position: absolute;
+	left:45px;
+	top: 15px;
+	float: left;
 }
- 
+
 #map {
   height: 100%;
-  max-width: 100%;
-  z-index:0;
-
+  width: 100%;
+  padding:0;
+  margin:0;
 }
 
-a {
-	color:white;
-	font-size: 1em;
-	text-decoration: none;
-}
-
+/*Leaflet Specific Styles*/
 .leaflet-popup-tip {
 	height:0px;
 }
@@ -106,61 +127,59 @@ a {
 	border-radius:5px;
 }
 
-
-/*Styles for Nav*/
-nav {
+.leaflet-center {
 	position: absolute;
-	top:0px;
-	right:15px;
-	z-index:15;
-	margin-top:15px;
-	font-family: 'Open Sans',sans-serif;
+	left: 15px;
+	width: 40%;
+	min-width:270px;
 }
 
-li {
-	display: inline;
-	margin-left:15px;
-}
-
-li a {
-	font-size:.8em;
-	text-decoration: none;
-	font-weight: 500;
-	color:rgb(160,160,160);
-}
-
-li a:hover {
-	color:rgb(100,100,100);
-}
-
-/*override location of right side of map*/
+/*override location of sides of map*/
 .leaflet-right .leaflet-control {
-	margin-right: 362px;
+	margin-right: 14px;
 	}
 
 .leaflet-top {
-	top: 0;
-	margin-top: 60px;
+	margin-top: 0px;
 }
 
-/*Styles for Legend*/
+.leaflet-bottom {
+	margin-bottom:50px;
+}
+
+/*Styles for Map Info Window and Legend*/
 .info {
-    padding: 6px 8px;
-    /*font: 10px/12px Arial, Helvetica, sans-serif;*/
-    font-family: 'Open Sans', sans-serif
-    background: white;
-    background: rgba(255,255,255,0.75);
+    padding: 5px;
+    font-family: 'Open Sans', sans-serif;
+    background: rgba(55,55,55,.8);
+    color:rgba(255,255,255,1);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 3px;
+    display: inline;
+    width:136px;
+}
+
+.info h5 {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+    margin: 5px 0px 2px 0px;
+    color: rgba(210,210,210,1);
+}
+
+.info #offset {
+	margin-left:7px;
+}
+
+.legend {
+    padding: 5px 5px;
+    font-family: 'Open Sans', sans-serif;
+    color:rgba(255,255,255,1);
+    background: rgba(55,55,55,.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
-}
-.info h4 {
-    margin: 0 0 5px;
-    color: #777;
-}
-.legend {
     line-height: 18px;
-    color: #555;
 }
+
 .legend i {
     width: 18px;
     height: 18px;
@@ -169,47 +188,55 @@ li a:hover {
     opacity: 0.7;
 }
 
+#legendTitle {
+	color:rgba(210,210,210,1);
+	font-size:1.2em;
+	margin-left:22px;
+}
 
+/*End Leaflet Specific Styles*/
 
 /*Styles for Sidebar Attribute Table*/
+
 #sideBar {
-	margin-top:60px;
-	width:352px;
-	height:100%;
-	background: rgba(70, 70, 70, 0.6);
-	position: absolute;
-	top: 0;
-	right: 0;
-	color: #FFFAFA;
-	padding: 15px 15px 0px 15px;
-	box-sizing: border-box;
-	line-height:1.67;
-	/*cursor:pointer;*/
-	z-index:5;
-	font-size:.9em;
+	display:block;
+	width:310px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#sideBarText {
+	font-size:.95em;
+	color:rgb(175,175,175);
+	margin-top:5px;
+	margin-bottom:5px;
 }
 
 #housePhoto {
-	margin-bottom: 0px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	max-width:100%;
 }
 
 #attributeTable {
-    width:330px;
+    width:310px;
     box-sizing: border-box;
     font-family:'Open Sans',sans-serif;
 }
-.row {
+
+.rowTable {
     width:100%;
     overflow:hidden;
 }
 
 .fullCell {
-    width:320px;
+    width:310px;
     float:left;
     padding:3px;
     margin-top:4px;
     margin-bottom:4px;
-    background:rgba(90,90,90,.8);
+    margin-right:4px;
+    background:rgba(90,90,90,1);
     font-size:1.5em;
     text-align:center;
     color:white;
@@ -217,13 +244,15 @@ li a:hover {
 }
 
 .fullCell:hover {
-	background:rgba(30,30,30,.8);
+	background:rgba(30,30,30,1);
 }
 .cell {
     float:left;
     padding:3px;
     margin-top:4px;
     border-radius:3px;
+    min-width: 23px;
+    min-height:26px;
 }
 
 .cell a {
@@ -232,13 +261,13 @@ li a:hover {
 }
 
 .cell.left{
-    width:110px;
+    width:105px;
     float:left;
 }
 
 .cell.right {
     width:200px;
-    background:rgba(42,85,65,.8);
+    background:rgba(42,85,65,1);
     margin-left: 4px;
     text-align:center;
     color:white;
@@ -246,7 +275,7 @@ li a:hover {
 
 .cell.right.even {
     width:200px;
-    background:rgba(120,120,120,.8);
+    background:rgba(120,120,120,1);
     margin-left: 4px;
     text-align:center;
     color:white;
@@ -255,14 +284,16 @@ li a:hover {
 /*Styles for Collapsible Footer*/
 #footer {
     position:fixed;
-    bottom:-273px;
-    right:420px;
+    bottom:-270px;
+    left:140px;
+    display:inline;
 }
 .open {
     display:block;
     overflow:hidden;
     padding:0 10px 0 8px;
-    float:right;
+    float:left;
+    margin-left:70px;
     text-decoration:none;
     line-height:28px;
     font:bold 13px/28px"Open Sans", sans-serif;
@@ -274,11 +305,12 @@ li a:hover {
     -ms-box-shadow:0 -1px 5px rgba(0, 0, 0, 0.20);
     box-shadow:0 -1px 5px rgba(0, 0, 0, 0.20);
 }
-.close {
+.closeFooter {
     display:none;
     overflow:hidden;
     padding:0 10px 0 8px;
-    float:right;
+    float:left;
+    margin-left:70px;
     text-decoration:none;
     line-height:28px;
     font:bold 13px/28px"Open Sans", sans-serif;
@@ -295,7 +327,7 @@ li a:hover {
     padding-left:15px;
 }
 
-#footer a.close span {
+#footer a.closeFooter span {
     background:url('../images/icons.png') 0 -596px no-repeat;
     padding-left:15px;
 }
@@ -304,18 +336,18 @@ li a:hover {
     color:white;
     background-position:0 -117px;
 }
-#footer a.close:hover span {
+#footer a.closeFooter:hover span {
     background:url('../images/icons.png') 0 -636px no-repeat;
     padding-left:15px;
 }
 #footerContent {
-    background:rgba(40, 40, 40, 0.9);
+    background:rgba(40, 40, 40, .6);
     line-height:20px;
     font-size:13px;
     font-family: 'Open Sans', sans-serif;
     color:white;
     padding:5px 5px 5px 5px;
-    width:730px;
+    width:705px;
     margin-top:27px;
     -moz-border-radius:2px 0 0 0;
     -webkit-box-shadow:0 -1px 5px rgba(0, 0, 0, 0.20);
@@ -326,11 +358,11 @@ li a:hover {
 }
 
 #footerContainer {
-	width:715px;
-	height:250px;
+	width:690px;
+	height:260px;
 	border:1px solid gray;
     padding: 5px 5px 5px 5px;
-	/*background-color:rgba(50,50,50,0.5);*/
+	/*background-color:rgba(50,50,50,1);*/
 }
 
 #footerTitle {
@@ -344,7 +376,7 @@ li a:hover {
 
 
 #cityName {
-    width:296.484px;
+    width:284.13px;
     background-color: #74c476;
     height:55px;
     line-height: 55px;
@@ -355,7 +387,7 @@ li a:hover {
 }
 
 #neighborhoodName {
-    width:370.087px;
+    width:354.66px;
     background-color: #41ab5d;
     height:55px;
     line-height: 55px;
@@ -366,7 +398,7 @@ li a:hover {
 }
 
 #thisProperty {
-    width:448.147px;
+    width:429.47px;
     background-color: #238b45;
     height:55px;
     line-height: 55px;
@@ -402,10 +434,11 @@ li a:hover {
 
 .chartCell.right {
     width:200px;
-    background:rgba(42,85,65,.8);
+    background:rgba(42,85,65,1);
     margin-left: 4px;
     text-align:left;
     color:white;
+    font-size:.9em;
 }
 
 .indent {
@@ -418,32 +451,150 @@ li a:hover {
 /*Scale bar for footer visualization*/
 .scale {
     float:left;
-    height:20px;
-    background-color:rgba(125,125,125,.9);
+    height:25px;
+    background-color:rgba(125,125,125,1);
     color:white;
     margin-top:10px;
+    margin-bottom: 5px;
     padding:2.5px 2.5px 2.5px 2.5px;
     text-align: right;
     border-bottom-left-radius: 5px;
 }
 
 #first {
-    width:130px;
-    margin-left:10px;
+    width:124.2px;
+    margin-left:100px;
 }
 
 #second {
-    width:167px;
+    width:167.2px;
     margin-left:3px;
 }
 
 #third {
-    width:182px;
+    width:179.9px;
     margin-left:3px;
 }
 
 #fourth {
-    width:100px;
+    width:95px;
     margin-left:3px;
+    padding-bottom:3px;
 }
 /*End Scale Bar*/
+
+/*Begin Styles for About Page*/
+#mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+	background:rgba(51, 51, 51, 0.87);
+  z-index: 10;
+  display:none;
+}
+
+
+.popupBackground {
+    position: absolute;
+    background:white;
+    height:70%;
+    width:80%;
+    top:15%;
+    bottom:15%;
+    left:10%;
+    right:10%;
+    border-radius:15px;
+    min-width:250px;
+    min-height:300px;
+	display:none;
+	z-index: 9998;
+}
+
+.popup {
+    background:white;
+    box-sizing: border-box;
+    width: 90%;
+    height:80%;
+    margin: auto;
+    position:relative;
+    top:1%;
+    bottom:15%;
+    min-width:225px;
+    min-height:280px;
+    padding-right:20px;
+	display:none;
+	overflow-y: scroll;
+	overflow-x:hidden;
+	z-index: 9999;
+}
+
+
+.popup h2 {
+  font-family:'Raleway',sans-serif;
+  font-weight:700;
+  font-size: 1.75em;
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+.popup p {
+  line-height: 22px;
+  margin-bottom:10px;
+}
+
+.popup h3 {
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+#close {
+    text-align:right;
+    position:relative;
+    top:5px;
+    right:10px;
+    font-size: 24px;
+    color:rgba(0,0,0,.4);
+}
+
+#close:hover {
+	cursor:pointer;
+	color: #E10000;
+}
+
+
+li#about {
+	padding-top: 15px;
+	padding-bottom: 0px;
+	padding-right:15px;
+	padding-left:15px;
+	color: #777;
+}
+
+li#about:hover {
+	color: #333;
+	cursor:pointer;
+}
+
+/*End Styles for About Page*/
+
+/*Scroll Bar Styling*/
+.popup::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+    border-radius:15px;
+}
+.popup::-webkit-scrollbar-thumb {
+    height: 6px;
+    background-clip: padding-box;
+    -webkit-border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+}
+.popup::-webkit-scrollbar-button {
+    height: 10px;
+}
+.popup::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
