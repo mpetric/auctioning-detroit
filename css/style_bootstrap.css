@@ -8,6 +8,7 @@ html, body {
   background-color:rgb(17,17,17);
 }
 
+
 /*Changes to Bootstrap Defaults*/
 .navbar {
 	margin-bottom:0px;
@@ -30,12 +31,12 @@ html, body {
 	padding-bottom: 0px;
 }
 
-.col-sm-9 {
+.col-md-9 {
 	height: 100%;
 	padding: 0px;
 }
 
-.col-sm-3 {
+.col-md-3 {
 	background: rgba(17, 17, 17, 1);
 	color:white;
 	height:100%;
