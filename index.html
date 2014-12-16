@@ -2,332 +2,342 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
 
-    <title>Auctioning Detroit</title>
-    <link href=
-    'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,300,600'
-    rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:600,700,800,900'
-    rel='stylesheet' type='text/css'>
-    <link href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" rel=
-    "stylesheet">
-    <link href=
-    "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css" rel=
-    "stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <script src="js/accounting.js"></script>
-    <script src="js/neighborhoods.js" type="text/javascript"></script>
+	<title>Auctioning Detroit</title>
+	<link href=
+	'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,300,600'
+	rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:600,700,800,900'
+	rel='stylesheet' type='text/css'>
+	<link href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" rel=
+	"stylesheet">
+	<link href=
+	"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css" rel=
+	"stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<script src="js/accounting.js"></script>
+	<script src="js/neighborhoods.js" type="text/javascript"></script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-57710415-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle collapsed" data-target="#navbar"
-                data-toggle="collapse" type="button"><span class=
-                "sr-only">Toggle navigation</span> <span class=
-                "icon-bar"></span> <span class="icon-bar"></span> <span class=
-                "icon-bar"></span></button>
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle collapsed" data-target="#navbar"
+				data-toggle="collapse" type="button"><span class=
+				"sr-only">Toggle navigation</span> <span class=
+				"icon-bar"></span> <span class="icon-bar"></span> <span class=
+				"icon-bar"></span></button>
 
-                <div id="header">
-                    Auctioning Detroit
-                </div>
-            </div>
+				<div id="header">
+					Auctioning Detroit
+				</div>
+			</div>
 
-            <div class="navbar-collapse collapse" id="navbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li id="about">About this Map</li>
+			<div class="navbar-collapse collapse" id="navbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li id="about">About this Map</li>
 
-                    <li>
-                        <a href=
-                        "https://github.com/mpetric/auctioning-detroit">GitHub</a>
-                    </li>
+					<li>
+						<a href=
+						"https://github.com/mpetric/auctioning-detroit">GitHub</a>
+					</li>
 
-                    <li>
-                        <a href=
-                        "https://www.linkedin.com/in/matthewpetric">LinkedIn</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+					<li>
+						<a href=
+						"https://www.linkedin.com/in/matthewpetric">LinkedIn</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8">
-                <div id="map"></div><!-- Begin Collapsible Footer -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8">
+				<div id="map"></div><!-- Begin Collapsible Footer -->
 
-                <div id="footer">
-                    <a class="open" href="javascript:void(0)"><span>Compare to
-                    Neighorhood and Detroit</span></a> <a class="closeFooter"
-                    href="javascript:void(0)"><span>Hide Data
-                    Visualization</span></a>
+				<div id="footer">
+					<a class="open" href="javascript:void(0)"><span>Compare to
+					Neighorhood and Detroit</span></a> <a class="closeFooter"
+					href="javascript:void(0)"><span>Hide Data
+					Visualization</span></a>
 
-                    <div id="footerContent">
-                        <div id="footerContainer">
-                            <div id="footerTitle">
-                                Auction Closing Price Comparison
-                            </div>
+					<div id="footerContent">
+						<div id="footerContainer">
+							<div id="footerTitle">
+								Auction Closing Price Comparison
+							</div>
 
-                            <div id="chartTable">
-                                <div class="chartRow">
-                                    <div class="chartCell left">
-                                        Property
+							<div id="chartTable">
+								<div class="chartRow">
+									<div class="chartCell left">
+										Property
 
-                                        <div class="indent" id="priceChart">
-                                            $34,400
-                                        </div>
-                                    </div>
+										<div class="indent" id="priceChart">
+											$34,400
+										</div>
+									</div>
 
-                                    <div class="chartCell right" id=
-                                    "thisProperty">
-                                        1737 W. Chicago Blvd.
-                                    </div>
-                                </div>
+									<div class="chartCell right" id=
+									"thisProperty">
+										1737 W. Chicago Blvd.
+									</div>
+								</div>
 
-                                <div class="chartRow">
-                                    <div class="chartCell left">
-                                        Neighborhood
+								<div class="chartRow">
+									<div class="chartCell left">
+										Neighborhood
 
-                                        <div class="indent" id=
-                                        "priceChartNGBH">
-                                            $18,038
-                                        </div>
-                                    </div>
+										<div class="indent" id=
+										"priceChartNGBH">
+											$18,038
+										</div>
+									</div>
 
-                                    <div class="chartCell right" id=
-                                    "neighborhoodName">
-                                        Durfee
-                                    </div>
-                                </div>
+									<div class="chartCell right" id=
+									"neighborhoodName">
+										Durfee
+									</div>
+								</div>
 
-                                <div class="chartRow">
-                                    <div class="chartCell left">
-                                        City
+								<div class="chartRow">
+									<div class="chartCell left">
+										City
 
-                                        <div class="indent">
-                                            $8,973
-                                        </div>
-                                    </div>
+										<div class="indent">
+											$8,973
+										</div>
+									</div>
 
-                                    <div class="chartCell right" id="cityName">
-                                        Detroit
-                                    </div>
-                                </div>
-                            </div>
+									<div class="chartCell right" id="cityName">
+										Detroit
+									</div>
+								</div>
+							</div>
 
-                            <div id="scale">
-                                <div class="scale" id="first">
-                                    $1,000
-                                </div>
+							<div id="scale">
+								<div class="scale" id="first">
+									$1,000
+								</div>
 
-                                <div class="scale" id="second">
-                                    $10,000
-                                </div>
+								<div class="scale" id="second">
+									$10,000
+								</div>
 
-                                <div class="scale" id="third">
-                                    $50,000
-                                </div>
+								<div class="scale" id="third">
+									$50,000
+								</div>
 
-                                <div class="scale" id="fourth">
-                                    $100,000
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- End Collapsible Footer -->
-            </div>
+								<div class="scale" id="fourth">
+									$100,000
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- End Collapsible Footer -->
+			</div>
 
-            <div class="col-md-4">
-                <!-- Begin Side Bar -->
+			<div class="col-md-4">
+				<!-- Begin Side Bar -->
 
-                <div id="sideBar">
-                    <div id="sideBarText">
-                        Detroit is auctioning properties to bidders who agree
-                        to refurbish and occupy the homes. This map shows the
-                        results of those auctions.
-                    </div>
+				<div id="sideBar">
+					<div id="sideBarText">
+						Detroit is auctioning properties to bidders who agree
+						to refurbish and occupy the homes. This map shows the
+						results of those auctions.
+					</div>
 
-                    <div id="housePhotoArea">
-                        <a href=
-                        "http://auctions.buildingdetroit.org/Listing/Details/403430/1737-W-Chicago-Blvd"
-                        id="full_url"><img id="housePhoto" src=
-                        "Content/listingImages/20140523/21f10199-ae7c-4a2a-ae57-23abb1f3c109_thumbcrop.jpg"
-                        style="width:324px;height:250px"></a>
-                    </div>
+					<div id="housePhotoArea">
+						<a href=
+						"http://auctions.buildingdetroit.org/Listing/Details/403430/1737-W-Chicago-Blvd"
+						id="full_url"><img id="housePhoto" src=
+						"Content/listingImages/20140523/21f10199-ae7c-4a2a-ae57-23abb1f3c109_thumbcrop.jpg"
+						style="width:324px;height:250px"></a>
+					</div>
 
-                    <div id="attributeTable">
-                        <div class="rowTable">
-                            <a href=
-                            "http://auctions.buildingdetroit.org/Listing/Details/403430/1737-W-Chicago-Blvd"
-                            id="full_url_2">
-                            <div class="fullCell">
-                                <span id="address">1737 W. Chicago Blvd</span>
-                            </div></a>
-                        </div>
+					<div id="attributeTable">
+						<div class="rowTable">
+							<a href=
+							"http://auctions.buildingdetroit.org/Listing/Details/403430/1737-W-Chicago-Blvd"
+							id="full_url_2">
+							<div class="fullCell">
+								<span id="address">1737 W. Chicago Blvd</span>
+							</div></a>
+						</div>
 
-                        <div class="rowTable">
-                            <div class="cell left">
-                                Price
-                            </div>
+						<div class="rowTable">
+							<div class="cell left">
+								Price
+							</div>
 
-                            <div class="cell right">
-                                <span id="price">$34,400</span>
-                            </div>
-                        </div>
+							<div class="cell right">
+								<span id="price">$34,400</span>
+							</div>
+						</div>
 
-                        <div class="rowTable">
-                            <div class="cell left">
-                                Sale Date
-                            </div>
+						<div class="rowTable">
+							<div class="cell left">
+								Sale Date
+							</div>
 
-                            <div class="cell right even">
-                                <span id="saleDate">May 29, 2014</span>
-                            </div>
-                        </div>
+							<div class="cell right even">
+								<span id="saleDate">May 29, 2014</span>
+							</div>
+						</div>
 
-                        <div class="rowTable">
-                            <div class="cell left">
-                                Square Feet
-                            </div>
+						<div class="rowTable">
+							<div class="cell left">
+								Square Feet
+							</div>
 
-                            <div class="cell right">
-                                <span id="squareFeet">3,800</span>
-                            </div>
-                        </div>
+							<div class="cell right">
+								<span id="squareFeet">3,800</span>
+							</div>
+						</div>
 
-                        <div class="rowTable">
-                            <div class="cell left">
-                                Bedrooms
-                            </div>
+						<div class="rowTable">
+							<div class="cell left">
+								Bedrooms
+							</div>
 
-                            <div class="cell right even">
-                                <span id="bedrooms">6</span>
-                            </div>
-                        </div>
+							<div class="cell right even">
+								<span id="bedrooms">6</span>
+							</div>
+						</div>
 
-                        <div class="rowTable">
-                            <div class="cell left">
-                                Bathrooms
-                            </div>
+						<div class="rowTable">
+							<div class="cell left">
+								Bathrooms
+							</div>
 
-                            <div class="cell right">
-                                <span id="bathrooms">2.1</span>
-                            </div>
-                        </div>
+							<div class="cell right">
+								<span id="bathrooms">2.1</span>
+							</div>
+						</div>
 
-                        <div class="rowTable">
-                            <div class="cell left">
-                                Year Built
-                            </div>
+						<div class="rowTable">
+							<div class="cell left">
+								Year Built
+							</div>
 
-                            <div class="cell right even">
-                                <span id="yearBuilt">1994</span>
-                            </div>
-                        </div>
+							<div class="cell right even">
+								<span id="yearBuilt">1994</span>
+							</div>
+						</div>
 
-                        <div class="rowTable">
-                            <div class="cell left">
-                                Neighorhood
-                            </div>
+						<div class="rowTable">
+							<div class="cell left">
+								Neighorhood
+							</div>
 
-                            <div class="cell right">
-                                <span id="neighborhood">Durfee</span>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- End Side Bar -->
-            </div>
-        </div>
-    </div>
+							<div class="cell right">
+								<span id="neighborhood">Durfee</span>
+							</div>
+						</div>
+					</div>
+				</div><!-- End Side Bar -->
+			</div>
+		</div>
+	</div>
 
-    <div id='mask'></div>
+	<div id='mask'></div>
 
-    <div class="popupBackground">
-        <div id="close">
-            &#10006;
-        </div>
+	<div class="popupBackground">
+		<div id="close">
+			&#10006;
+		</div>
 
-        <div class="popup">
-            <h2>About this Map</h2>
+		<div class="popup">
+			<h2>About this Map</h2>
 
-            <p>The City of Detroit, through the <strong>Detroit Land Bank
-            Authority (DLBA)</strong>, has been auctioning homes since May 2014
-            with the hopes of attracting new residents to the city's
-            neighborhoods. The auctions come with strict rules. Detroit isn't
-            in the market for investors looking for a quick buck and wants to
-            prevent the homes from having the same fate as many of those
-            auctioned through Wayne County's tax-foreclosure auctions, an
-            auction system for which <a href=
-            "http://michiganradio.org/post/wayne-county-sues-collect-back-taxes-properties-it-once-sold-tax-foreclosure-auctions"
-            target="_blank">78 percent</a> of homes have fallen back into tax
-            deliquency. Winning bidders in the DLBA auctions must agree to
-            rehab the homes and establish occupancy, and Detroit follows up on
-            the promise. Within 30 days of an auction closing, the buyer must
-            produce a signed contract for rehabilitation/renovation or
-            demonstrate the skill to carry out the rehab by his/herself. Within
-            six months, the house must be rehabbed and occupied. Failure to
-            meet these milestones results in the forfeiture of the property
-            back to the Land Bank.</p>
+			<p>The City of Detroit, through the <strong>Detroit Land Bank
+			Authority (DLBA)</strong>, has been auctioning homes since May 2014
+			with the hopes of attracting new residents to the city's
+			neighborhoods. The auctions come with strict rules. Detroit isn't
+			in the market for investors looking for a quick buck and wants to
+			prevent the homes from having the same fate as many of those
+			auctioned through Wayne County's tax-foreclosure auctions, an
+			auction system for which <a href=
+			"http://michiganradio.org/post/wayne-county-sues-collect-back-taxes-properties-it-once-sold-tax-foreclosure-auctions"
+			target="_blank">78 percent</a> of homes have fallen back into tax
+			deliquency. Winning bidders in the DLBA auctions must agree to
+			rehab the homes and establish occupancy, and Detroit follows up on
+			the promise. Within 30 days of an auction closing, the buyer must
+			produce a signed contract for rehabilitation/renovation or
+			demonstrate the skill to carry out the rehab by his/herself. Within
+			six months, the house must be rehabbed and occupied. Failure to
+			meet these milestones results in the forfeiture of the property
+			back to the Land Bank.</p>
 
-            <p>Detroit has now auctioned a few hundred of these properties, and
-            every day auctions a couple more. This website maps the results of
-            those auctions and adds visualization tools to help the user better
-            contextualize closing prices throughout the city. Data is updated
-            through the end of November. I completed this project as part of a
-            <a href=
-            "https://www.pratt.edu/academics/continuing-education-and-professional/pro-certificate-programs/certificate-program-in-gis-and-design/%20target=">
-            GIS and Design Certificate Program</a> at Pratt Institute.</p>
+			<p>Detroit has now auctioned a few hundred of these properties, and
+			every day auctions a couple more. This website maps the results of
+			those auctions and adds visualization tools to help the user better
+			contextualize closing prices throughout the city. Data is updated
+			through the end of November. I completed this project as part of a
+			<a href=
+			"https://www.pratt.edu/academics/continuing-education-and-professional/pro-certificate-programs/certificate-program-in-gis-and-design/%20target=">
+			GIS and Design Certificate Program</a> at Pratt Institute.</p>
 
-            <h3>About the Data</h3><img alt="Auction listings" src=
-            "images/detroit_auctions.png">
+			<h3>About the Data</h3><img alt="Auction listings" src=
+			"images/detroit_auctions.png">
 
-            <p>DBLA's <a href=
-            "http://auctions.buildingdetroit.org/Home/SoldHouses" target=
-            "_blank">Past Auctions</a> website serves as the basis for
-            "Auctioning Detroit." I scraped the website using the <a href=
-            "http://scrapy.org/" target="_blank">Scrapy</a> framework for
-            Python. <a href=
-            "https://github.com/mpetric/auctioning-detroit/blob/master/scrapy/auctions/auctions/spiders/auction_spider.py"
-            target="_blank">Code</a> for my spider, as well as all other code
-            and data for this site, can be <a href=
-            "https://github.com/mpetric/auctioning-detroit" target=
-            "_blank">found on GitHub.</a> In addition, I supplemented the data
-            from DBLA with lot and neighborhood information from a Detroit
-            parcel's shapefile that can be downloaded <a href=
-            "https://github.com/mpetric/auctioning-detroit/tree/master/data/detroit_polygons"
-            target="_blank">here.</a> Finally, the neighborhood hover outlines
-            came from a shapefile of Detroit's master plan neighborhoods from
-            the City's <a href=
-            "http://www.detroitmi.gov/DepartmentsandAgencies/PlanningDevelopmentDepartment/Planning/InformationServiceandMapping/CommunityInformationandMapping/AdvancedMaps/DownloadGISFiles.aspx"
-            target="_blank">GIS Portal.</a></p>
+			<p>DBLA's <a href=
+			"http://auctions.buildingdetroit.org/Home/SoldHouses" target=
+			"_blank">Past Auctions</a> website serves as the basis for
+			"Auctioning Detroit." I scraped the website using the <a href=
+			"http://scrapy.org/" target="_blank">Scrapy</a> framework for
+			Python. <a href=
+			"https://github.com/mpetric/auctioning-detroit/blob/master/scrapy/auctions/auctions/spiders/auction_spider.py"
+			target="_blank">Code</a> for my spider, as well as all other code
+			and data for this site, can be <a href=
+			"https://github.com/mpetric/auctioning-detroit" target=
+			"_blank">found on GitHub.</a> In addition, I supplemented the data
+			from DBLA with lot and neighborhood information from a Detroit
+			parcel's shapefile that can be downloaded <a href=
+			"https://github.com/mpetric/auctioning-detroit/tree/master/data/detroit_polygons"
+			target="_blank">here.</a> Finally, the neighborhood hover outlines
+			came from a shapefile of Detroit's master plan neighborhoods from
+			the City's <a href=
+			"http://www.detroitmi.gov/DepartmentsandAgencies/PlanningDevelopmentDepartment/Planning/InformationServiceandMapping/CommunityInformationandMapping/AdvancedMaps/DownloadGISFiles.aspx"
+			target="_blank">GIS Portal.</a></p>
 
-            <h3>About the Site Design</h3>
+			<h3>About the Site Design</h3>
 
-            <p>The website is built using the <a href=
-            "http://getbootstrap.com/">Bootstrap</a> front-end framework, which
-            allows for relatively painless mobile-first responsive design.</p>
+			<p>The website is built using the <a href=
+			"http://getbootstrap.com/">Bootstrap</a> front-end framework, which
+			allows for relatively painless mobile-first responsive design.</p>
 
-            <p>The map features are achieved using the <a href=
-            "http://leafletjs.com/" target="_blank">Leaflet</a> JavaScript
-            library, originally developed by Vladimir Agafonkin. Much of the
-            site interactivity is accomplished via <a href="http://jquery.com/"
-            target="_blank">jQuery</a>. The address search feature is built
-            using the <a href="https://github.com/smeijer/L.GeoSearch" target=
-            "_blank">GeoSearch</a> plugin by Stephan Meijer. The web site uses
-            <a href="http://josscrowcroft.github.io/accounting.js/" target=
-            "_blank">account.js</a> to easily format numbers as currency and
-            other bits of code I picked up here and there on websites like
-            Stack Overflow.</p>
+			<p>The map features are achieved using the <a href=
+			"http://leafletjs.com/" target="_blank">Leaflet</a> JavaScript
+			library, originally developed by Vladimir Agafonkin. Much of the
+			site interactivity is accomplished via <a href="http://jquery.com/"
+			target="_blank">jQuery</a>. The address search feature is built
+			using the <a href="https://github.com/smeijer/L.GeoSearch" target=
+			"_blank">GeoSearch</a> plugin by Stephan Meijer. The web site uses
+			<a href="http://josscrowcroft.github.io/accounting.js/" target=
+			"_blank">account.js</a> to easily format numbers as currency and
+			other bits of code I picked up here and there on websites like
+			Stack Overflow.</p>
 
-            <p>Finally, this web site was made possible with the help of my
-            class instructors, Chris Whong and Larry Buchanan.</p>
-        </div>
-    </div><script src="js/leaflet.js"></script> <script src=
+			<p>Finally, this web site was made possible with the help of my
+			class instructors, Chris Whong and Larry Buchanan.</p>
+		</div>
+	</div><script src="js/leaflet.js"></script> <script src=
 "http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <script src=
 "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.js"></script> <script src="js/l.control.geosearch.js"></script> <script src="js/l.geosearch.provider.google.js"></script>
-    <link href="css/l.geosearch.css" rel="stylesheet"><script src=
-    "js/script.js"></script>
+	<link href="css/l.geosearch.css" rel="stylesheet"><script src=
+	"js/script.js"></script>
 </body>
 </html>
