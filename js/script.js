@@ -1,6 +1,9 @@
 //Hide footer on small screens
 if ($(window).width() < 1200) {
     $('#footer').css("display", "none");
+    $('#sideBarText').css("display", "none");
+    $('#map').css("height", "98%");
+    $('.col-md-8').css("height", "82%");
 }
 // Set location of points geoJson
 var geoJsonFile = './js/auction_points.geojson';
@@ -270,4 +273,9 @@ $('#close').on('click', function() {
 //Turn off info window if small display; run function at end of script to override div info creation
 if ($(window).width() < 1000) {
     $('.info').css("display", "none");
+}
+
+//Change leaflet bottom margin on small screens
+if ($(window).width() < 1200) {
+    $('.leaflet-bottom').css("margin-bottom", "5px");
 }

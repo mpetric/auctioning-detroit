@@ -78,7 +78,7 @@ html,body {
 
 #map {
 	height:100%;
-	width:96%;
+	width:100%;
 	padding:0;
 	margin:0 px 0 0
 }
@@ -135,19 +135,19 @@ html,body {
 
 /*override location of sides of map*/
 .leaflet-right .leaflet-control {
-	margin-right:5px
+	margin-right:5px;
 }
 
 .leaflet-top {
-	margin-top:0
+	margin-top:0;
 }
 
 .leaflet-bottom {
-	margin-bottom:50px
+	margin-bottom:50px;
 }
 
 .leaflet-left {
-	margin-left:-5px
+	margin-left:-5px;
 }
 
 /*Styles for Map Info Window and Legend*/
@@ -211,6 +211,7 @@ html,body {
 	color:#afafaf;
 	margin-top:5px;
 	margin-bottom:5px
+	display:inline;
 }
 
 #housePhoto {
