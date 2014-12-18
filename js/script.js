@@ -259,7 +259,7 @@ $(document).ready(function() {
         $('.open').show();
     });
 });
-// Script for About Page
+// Script for About Page : Tweaked from code by Chris Whong
 $('#about').on('click', function() {
     $('#mask').fadeIn(250);
     $('.popup').fadeIn(250);
